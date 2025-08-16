@@ -99,15 +99,24 @@
         result.innerHTML = "<p>🚽 No Skibidi found for that character...</p>";
       }
 
-      // Play whoosh sound when image/text spawns
-      document.getElementById("whooshSound").play();
+      // Play whoosh when summoning
+      let whoosh = document.getElementById("whooshSound");
+      whoosh.currentTime = 0;
+      whoosh.play();
     }
 
-    // Typing sound effect
-    document.getElementById("userInput").addEventListener("keydown", () => {
-      let sound = document.getElementById("typingSound");
-      sound.currentTime = 0; // restart each keypress
-      sound.play();
+    // Typing sound (plays only while typing)
+    let typing = document.getElementById("typingSound");
+    let inputBox = document.getElementById("userInput");
+
+    inputBox.addEventListener("keydown", () => {
+      typing.currentTime = 0;
+      typing.play();
+    });
+
+    inputBox.addEventListener("keyup", () => {
+      typing.pause();
+      typing.currentTime = 0;
     });
   </script>
 </body>
