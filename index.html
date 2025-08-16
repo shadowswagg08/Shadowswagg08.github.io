@@ -7,13 +7,38 @@
     body {
       margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at center, #111, #000);
+      background: black;
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 50px;
       overflow: hidden;
     }
+
+    /* starfield background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+      animation: starsMove 60s linear infinite;
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    @keyframes starsMove {
+      0% {transform: translate(0, 0);}
+      100% {transform: translate(-100px, -200px);}
+    }
+
+    h1 {
+      font-size: 40px;
+      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+    }
+
     input {
       padding: 10px;
       font-size: 16px;
@@ -25,11 +50,20 @@
       margin-left: 10px;
       cursor: pointer;
     }
+
+    /* fade-in animation for images */
     img {
       margin-top: 20px;
       max-width: 400px;
       border-radius: 12px;
       box-shadow: 0 0 20px #fff;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
@@ -43,32 +77,24 @@
   <div id="result"></div>
 
   <script>
-    // Show images
     function showImage() {
       let input = document.getElementById("userInput").value.toLowerCase();
       let result = document.getElementById("result");
       result.innerHTML = ""; 
 
       if (input.includes("gojo")) {
-        result.innerHTML = "<img src='Gojo.jpeg' alt='Gojo Skibidi'>";
+        result.innerHTML = "<img src='Gojo.jpeg' alt='Gojo Skibidi' class='fade'>";
       } 
       else if (input.includes("sukuna") || input.includes("sukna")) {
-        result.innerHTML = "<img src='Sukuna.jpeg' alt='Sukuna Skibidi'>";
+        result.innerHTML = "<img src='Sukuna.jpeg' alt='Sukuna Skibidi' class='fade'>";
       } 
       else if (input.includes("itadori") || input.includes("yuji")) {
-        result.innerHTML = "<img src='Itadori.jpeg' alt='Itadori Skibidi'>";
+        result.innerHTML = "<img src='Itadori.jpeg' alt='Itadori Skibidi' class='fade'>";
       }
       else {
         result.innerHTML = "<p>🚽 No Skibidi found for that character...</p>";
       }
     }
-
-    // Moving background with cursor
-    document.addEventListener("mousemove", function(e) {
-      let x = (e.clientX / window.innerWidth) * 100;
-      let y = (e.clientY / window.innerHeight) * 100;
-      document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, #222, #000)`;
-    });
   </script>
 </body>
 </html>
