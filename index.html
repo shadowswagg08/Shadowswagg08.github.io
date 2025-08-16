@@ -76,6 +76,10 @@
   
   <div id="result"></div>
 
+  <!-- Sound Effects -->
+  <audio id="whooshSound" src="https://www.myinstants.com/media/sounds/whoosh-6316.mp3"></audio>
+  <audio id="typingSound" src="https://www.myinstants.com/media/sounds/keyboard-typing.mp3"></audio>
+
   <script>
     function showImage() {
       let input = document.getElementById("userInput").value.toLowerCase();
@@ -83,18 +87,28 @@
       result.innerHTML = ""; 
 
       if (input.includes("gojo")) {
-        result.innerHTML = "<img src='Gojo.jpeg' alt='Gojo Skibidi' class='fade'>";
+        result.innerHTML = "<img src='Gojo.jpeg' alt='Gojo Skibidi'>";
       } 
       else if (input.includes("sukuna") || input.includes("sukna")) {
-        result.innerHTML = "<img src='Sukuna.jpeg' alt='Sukuna Skibidi' class='fade'>";
+        result.innerHTML = "<img src='Sukuna.jpeg' alt='Sukuna Skibidi'>";
       } 
       else if (input.includes("itadori") || input.includes("yuji")) {
-        result.innerHTML = "<img src='Itadori.jpeg' alt='Itadori Skibidi' class='fade'>";
+        result.innerHTML = "<img src='Itadori.jpeg' alt='Itadori Skibidi'>";
       }
       else {
         result.innerHTML = "<p>🚽 No Skibidi found for that character...</p>";
       }
+
+      // Play whoosh sound when image/text spawns
+      document.getElementById("whooshSound").play();
     }
+
+    // Typing sound effect
+    document.getElementById("userInput").addEventListener("keydown", () => {
+      let sound = document.getElementById("typingSound");
+      sound.currentTime = 0; // restart each keypress
+      sound.play();
+    });
   </script>
 </body>
 </html>
