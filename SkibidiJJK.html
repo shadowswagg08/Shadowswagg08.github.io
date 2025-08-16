@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skibidi JJK</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    img {
+      margin-top: 20px;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>💀 Skibidi JJK 💀</h1>
+  <p>Type a cursed combo (e.g. <b>gojo skibidi</b>, <b>sukuna skibidi</b>)</p>
+  
+  <input id="userInput" placeholder="Type here...">
+  <button onclick="showImage()">Summon</button>
+  
+  <div id="result"></div>
+
+  <script>
+    function showImage() {
+      let input = document.getElementById("userInput").value.toLowerCase();
+      let result = document.getElementById("result");
+      result.innerHTML = ""; // clear before showing
+
+      if (input === "gojo skibidi") {
+        result.innerHTML = "<img src='https://i.imgur.com/5brQKUt.png' alt='Gojo Skibidi'>";
+      } 
+      else if (input === "sukuna skibidi") {
+        result.innerHTML = "<img src='https://i.imgur.com/jFJhwkN.png' alt='Sukuna Skibidi'>";
+      } 
+      else if (input === "itadori skibidi") {
+        result.innerHTML = "<img src='https://i.imgur.com/9UPeZ9b.png' alt='Itadori Skibidi'>";
+      }
+      else {
+        result.innerHTML = "<p>🚽 No Skibidi found for that character...</p>";
+      }
+    }
+  </script>
+</body>
+</html>
