@@ -15,7 +15,7 @@
       overflow: hidden;
     }
 
-    /* starfield background using a safe hosted image */
+    /* starfield background */
     body::before {
       content: "";
       position: fixed;
@@ -23,7 +23,7 @@
       left: 0;
       width: 200%;
       height: 200%;
-      background: url("https://i.ibb.co/4f7j7LJ/stars.png") repeat;
+      background: url("stars.png") repeat;
       animation: starsMove 60s linear infinite;
       opacity: 0.6;
       z-index: -1;
@@ -51,19 +51,24 @@
       cursor: pointer;
     }
 
-    /* fade-in animation for images */
+    /* fade-in + pulsing glow */
     img {
       margin-top: 20px;
       max-width: 400px;
       border-radius: 12px;
-      box-shadow: 0 0 20px #fff;
+      box-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff;
       opacity: 0;
-      animation: fadeIn 1s forwards;
+      animation: fadeIn 1s forwards, pulseGlow 2s infinite alternate;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
+      to { box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff; }
     }
   </style>
 </head>
@@ -76,9 +81,9 @@
   
   <div id="result"></div>
 
-  <!-- Sound Effects (hosted mp3s) -->
-  <audio id="whooshSound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-zoom-swoosh-1461.mp3"></audio>
-  <audio id="typingSound" src="https://assets.mixkit.co/sfx/preview/mixkit-typewriter-soft-click-1125.mp3"></audio>
+  <!-- Sound Effects -->
+  <audio id="whooshSound" src="whoosh.mp3"></audio> <!-- upload this -->
+  <audio id="typingSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c61b69a0f5.mp3?filename=keyboard-typing-1125.mp3"></audio>
 
   <script>
     function showImage() {
